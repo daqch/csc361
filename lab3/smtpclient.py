@@ -54,6 +54,10 @@ messageCommand = "this is a test from python\r\n"
 clientSocket.send(messageCommand.encode())
 endCommand = ".\r\n"
 clientSocket.send(endCommand.encode())
+recv1 = clientSocket.recv(1024).decode()
+print(recv1)
+if recv1[:3] != '250':
+    print('250 reply not received from server.')
 
 
 
@@ -62,5 +66,5 @@ quitCommand = 'quit\r\n'
 clientSocket.send(quitCommand.encode())
 recv1 = clientSocket.recv(1024).decode()
 print(recv1)
-if recv1[:3] != '250':
-    print('250 reply not received from server.')
+if recv1[:3] != '221':
+    print('221 reply not received from server.')
